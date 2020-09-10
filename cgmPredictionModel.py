@@ -1,4 +1,4 @@
-# quick evaluation of glocose level slope prediction
+# quick evaluation of glocose level slope prediction of CGM readings
 # prediction based on 10 previous data points and current time of day
 # largly based on https://machinelearningmastery.com/time-series-prediction-lstm-recurrent-neural-networks-python-keras/
 
@@ -14,8 +14,6 @@ from functools import reduce
 print(tf.__version__)
 
 # build data set with 10 previous known data points
-
-
 def create_dataset(X, y, time_steps=1):
     Xs, ys = [], []
     for i in range(len(X) - time_steps):
@@ -25,8 +23,6 @@ def create_dataset(X, y, time_steps=1):
     return np.array(Xs), np.array(ys)
 
 # build and train LSTM
-
-
 def get_model():
     # create dataframe from 90 days of CGM readings
     df = pd.read_csv("BG_with_time.csv", names=['Time', 'BG'])
